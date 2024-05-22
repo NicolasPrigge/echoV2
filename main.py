@@ -50,7 +50,7 @@ def main() -> None:
     try:
         echo(sys.argv[1], sys.argv[2])
     except IndexError:
-        raise IndexError("missing argument")
+        print("missing parameters")
 
 
 # Press the green button in the gutter to run the script.
