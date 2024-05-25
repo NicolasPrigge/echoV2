@@ -9,14 +9,19 @@ def print_menu() -> None:
     print("-c: print text in color\nusage: echo [mode] [text] [color]")
 
 
-def echo(mode: str = "-t", text: str = "") -> None:
+def echo(mode: str = "-t") -> None:
     """
 
     :param mode: le mode utilisation de la function -t si output text  -f si output dans un fichier
-    :param text: le texte a append a un fichier ou a print
     :raise: index error si y manque le nom du fichier
     :return:
     """
+    if mode != "-c":
+        try:
+            text: str = sys.argv[2]
+        except IndexError:
+            raise IndexError("no text given")
+
     if mode == "-f":
         try:
             with open(sys.argv[3], "a") as f:
@@ -48,7 +53,7 @@ def main() -> None:
     :return:
     """
     try:
-        echo(sys.argv[1], sys.argv[2])
+        echo(sys.argv[1])
     except IndexError:
         print("missing parameters")
 
